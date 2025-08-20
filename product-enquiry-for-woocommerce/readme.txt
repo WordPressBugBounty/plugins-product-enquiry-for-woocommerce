@@ -1,13 +1,13 @@
 === Product Enquiry for WooCommerce ===
-Current Version: 3.2.2
+Current Version: 3.2.3
 Contributors: WisdmLabs
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=info%40wisdmlabs%2ecom&lc=US&item_name=WisdmLabs%20Plugin%20Donation&no_note=0&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest
 Tags: woocommerce inquiry, woocommerce enquiry, request a quote woocommerce, product enquiry for woocommerce, product inquiry for woocommerce
 Requires at least: 5.3
-Tested up to: 6.8.1
+Tested up to: 6.8.2
 Requires PHP: 5.6
-Stable tag: 3.2.2
-WooCommerce Version: 9.9.3
+Stable tag: 3.2.3
+WooCommerce Version: 10.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -136,6 +136,14 @@ No. You have to use the default inquiry form. Having said that, the Pro version 
 8. Form to submit the inquiry
 
 == Changelog ==
+
+= 3.2.3 =
+* Feature:  Added instant, real-time validation for enquiry form fields (on keyup/focusout/input) with all the fields.
+* Feature:  Introduced a Pro upsell modal on settings pages when interacting with [Available in PRO]
+* Fix:      Prevented invalid HTML pattern regex from breaking the enquiry button on PHP 8+ by disabling native pattern parsing and relying on JS validation.
+* Tweak:    Updated the admin upsell “View Demo” link to the latest demo page.
+* Tweak:    Compatibility with WordPress 6.8.2 ensured.
+* Tweak:    Compatibility with WooCommerce 10.1.0 ensured.
 
 = 3.2.2 =
 * Tweak:    Compatibility with WordPress 6.8.1 ensured.

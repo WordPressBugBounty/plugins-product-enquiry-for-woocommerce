@@ -156,6 +156,7 @@ class PE_Public_Enquiry_Button {
 				'ajaxurl'               => admin_url( 'admin-ajax.php' ),
 				'product_name'          => get_the_title(),
 				'wdm_customer_name'     => __( 'Name is required.', 'product-enquiry-for-woocommerce' ),
+				'wdm_customer_name_invalid' => __( 'Please enter a valid name (letters, spaces, apostrophes, hyphens).', 'product-enquiry-for-woocommerce' ),
 				'wdm_customer_email'    => __( 'Enter valid Email Id.', 'product-enquiry-for-woocommerce' ),
 				'wdm_txtphone_required' => __( 'Phone number is required.', 'product-enquiry-for-woocommerce' ),
 				'wdm_txtphone_invalid'  => __( 'Enter valid phone number.', 'product-enquiry-for-woocommerce' ),

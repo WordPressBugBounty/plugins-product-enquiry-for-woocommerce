@@ -100,6 +100,21 @@ class PE_Admin_Settings_Products {
 			<a href="admin.php?page=product-enquiry-for-woocommerce&tab=premium" class="premium nav-tab <?php echo esc_attr( ( 'premium' === $active_tab ) ? 'nav-tab-active' : '' ); ?>"><?php esc_attr_e( 'Premium Version', 'product-enquiry-for-woocommerce' ); ?></a>
 		</h2>  
 			<?php
+			// Enqueue upsell assets on settings pages
+			wp_enqueue_style( 'pefree-upsell' );
+			wp_enqueue_script( 'pefree-upsell' );
+			wp_localize_script(
+				'pefree-upsell',
+				'pefreeUpsell',
+				array(
+					'title'   => __( 'Go Pro to unlock this setting', 'product-enquiry-for-woocommerce' ),
+					'message' => __( 'This option is available in the Pro version. Upgrade to enable quotation workflow, PDF quotes, multiproduct enquiries, and more.', 'product-enquiry-for-woocommerce' ),
+					'ctaText' => __( 'Purchase Pro', 'product-enquiry-for-woocommerce' ),
+					'demoText'=> __( 'View Demo', 'product-enquiry-for-woocommerce' ),
+					'proUrl'  => 'https://wisdmlabs.com/woocommerce-quotation-and-inquiry/?utm_source=pefree_admin&utm_medium=upsell_modal&utm_campaign=pefree_admin',
+					'demoUrl' => 'https://wisdmlabs.com/pep-demo/',
+				)
+			);
 			if ( 'entry' === $active_tab ) {
 				$form_tab = PE_Admin_Settings_Enquiry_Details_Tab::instance();
 				$form_tab->entry_tab_functionality_helper();
