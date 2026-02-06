@@ -1,13 +1,13 @@
 === Product Enquiry for WooCommerce ===
-Current Version: 3.2.3
+Current Version: 3.2.5.2
 Contributors: WisdmLabs
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=info%40wisdmlabs%2ecom&lc=US&item_name=WisdmLabs%20Plugin%20Donation&no_note=0&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest
 Tags: woocommerce inquiry, woocommerce enquiry, request a quote woocommerce, product enquiry for woocommerce, product inquiry for woocommerce
 Requires at least: 5.3
-Tested up to: 6.8.2
+Tested up to: 6.9
 Requires PHP: 5.6
-Stable tag: 3.2.3
-WooCommerce Version: 10.1.0
+Stable tag: 3.2.5.2
+WooCommerce Version: 10.4.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -65,7 +65,7 @@ The latest version is ready for translation. All you need to do is create the **
 
 = Enhanced functions with Pro =
 
-To enhance and add more value to the existing functions, you should also check out the **Premium version - [WISDM Product Enquiry Pro](https://wisdmlabs.com/woocommerce-quotation-and-inquiry/?utm_source=pefreewordpress&utm_medium=pefreewordpress&utm_campaign=pefreewordpress) for WooCommerce**. 
+To enhance and add more value to the existing functions, check out [WISDM Product Enquiry Pro](https://wisdmlabs.com/woocommerce-product-enquiry-pro/?utm_source=Wordpress&utm_medium=Page&utm_campaign=bfcm_2025#pricing) — now available at **70% OFF** for **Black Friday!** Unlock **Quote Requests, Multi-Product Enquiry & WhatsApp Integration.** **Code: WISDMBFCM** | **Ends Dec 5th.**
 
 Using this, you can empower your customers to send a single quotation request for **multiple products** or inquire about **bulk** or **large ticket size orders**. You can also view and reply to all inquiries and quote requests right from your dashboard.
 
@@ -89,6 +89,18 @@ Pro Review:
 
 
 <<[Check all Features & Pricing](https://wisdmlabs.com/woocommerce-quotation-and-inquiry/?utm_source=pefreewordpress&utm_medium=pefreewordpress&utm_campaign=pefreewordpress)>> | <<[View Demo](https://quoteup.wisdmlabs.com/?utm_source=PEfreelandingpage&utm_medium=PEfreelandingpage&utm_campaign=PEfreelandingpage)>>
+
+
+= Boost Enquiries with AI BotKit =
+
+Looking to automate enquiry responses and boost conversions?
+
+Try **AI BotKit**, a free AI chatbot that connects with your WordPress site to:
+Instantly answer customer questions
+Capture and qualify leads 24x7
+Work seamlessly with WooCommerce
+
+👉 [Get Free AI Chatbot](https://aibotkit.io/ai-chatbot-for-wordpress/?utm_source=Product+Enquiry+for+WooCommerce&utm_medium=read+me&utm_campaign=Product+Enquiry+for+WooCommerce+inside+plugin&utm_id=Wordpress)
 
 
 **Recommended Plugins:** [WISDM Customer Specific Pricing](https://wisdmlabs.com/woocommerce-user-specific-pricing-extension/?utm_source=PEfreelandingpage&utm_medium=PEfreelandingpage&utm_campaign=PEfreelandingpage), [WISDM Product Catalog Manager(Free)](https://wisdmlabs.com/woocommerce-catalog-mode/?utm_source=PEfreelandingpage&utm_medium=PEfreelandingpage&utm_campaign=PEfreelandingpage)
@@ -137,11 +149,30 @@ No. You have to use the default inquiry form. Having said that, the Pro version 
 
 == Changelog ==
 
+= 3.2.5.2 =
+* Fix:      Added the URL of AIBotKit for the free assistant. 
+* Tweak:    Compatibility with WooCommerce 10.4.3 ensured.
+
+= 3.2.5.1 =
+* Fix:      Added support for the Beacon code to handle customer queries, available only in the backend settings of PE Free.
+* Tweak:    Compatibility with WooCommerce 10.3.5 ensured.
+
+= 3.2.5 =
+* Feature:  Added support beacon code for customer queries.
+* Tweak:    Compatibility with WordPress 6.8.3 ensured.
+* Tweak:    Compatibility with WooCommerce 10.3.4 ensured.
+
+= 3.2.4 =
+* Feature:  Added activation popup with advanced UI to promote Pro features.
+* Feature:  Added filter 'pefree_show_activation_popup' to allow developers to disable the activation popup.
+* Tweak:    Compatibility with WordPress 6.8.3 ensured.
+* Tweak:    Compatibility with WooCommerce 10.3.4 ensured.
+
 = 3.2.3 =
 * Feature:  Added instant, real-time validation for enquiry form fields (on keyup/focusout/input) with all the fields.
 * Feature:  Introduced a Pro upsell modal on settings pages when interacting with [Available in PRO]
 * Fix:      Prevented invalid HTML pattern regex from breaking the enquiry button on PHP 8+ by disabling native pattern parsing and relying on JS validation.
-* Tweak:    Updated the admin upsell “View Demo” link to the latest demo page.
+* Tweak:    Updated the admin upsell "View Demo" link to the latest demo page.
 * Tweak:    Compatibility with WordPress 6.8.2 ensured.
 * Tweak:    Compatibility with WooCommerce 10.1.0 ensured.
 
