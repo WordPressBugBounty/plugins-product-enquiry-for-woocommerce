@@ -104,10 +104,13 @@ class PE_Admin_AI_BotKit_Banner {
 			return false;
 		}
 
-		// Check if user has dismissed the banner.
-		$user_id   = get_current_user_id();
-		$dismissed = get_user_meta( $user_id, 'pefree_ai_botkit_banner_dismissed', true );
-		if ( $dismissed ) {
+		// Check if user has dismissed the banner after current activation.
+		$user_id         = get_current_user_id();
+		$dismissed_time  = (int) get_user_meta( $user_id, 'pefree_ai_botkit_banner_dismissed', true );
+		$activation_time = (int) get_option( 'wdm_pefree_activation_time', 0 );
+
+		// If dismissed after activation, don't show.
+		if ( $dismissed_time && $dismissed_time >= $activation_time ) {
 			return false;
 		}
 
@@ -123,33 +126,122 @@ class PE_Admin_AI_BotKit_Banner {
 			return;
 		}
 
-		// Get image URLs.
-		$logo_url  = WDM_PE_PLUGIN_URL . 'img/aibot/ai-botkit-logo.png';
-		$right_url = WDM_PE_PLUGIN_URL . 'img/aibot/ai-botkit-banner.png';
-		$cta_url   = 'https://aibotkit.io/ai-chatbot-for-wordpress/?utm_source=Woocommerce+free+plugin&utm_medium=Banner&utm_campaign=Banner+redirect&utm_id=Woocommerce+plugin';
-		$nonce     = wp_create_nonce( 'pefree_dismiss_ai_banner' );
+		$nonce   = wp_create_nonce( 'pefree_dismiss_ai_banner' );
+		$install_nonce = wp_create_nonce( 'pefree_install_ai_plugin' );
+
+		// Check AI plugin status
+		$plugin_installed = file_exists( WP_PLUGIN_DIR . '/ai-botkit-for-lead-generation/ai-botkit-for-lead-generation.php' );
+		$plugin_active    = $plugin_installed && is_plugin_active( 'ai-botkit-for-lead-generation/ai-botkit-for-lead-generation.php' );
 		?>
 		<div class="notice notice-info mmrm-ai-botkit-banner" data-nonce="<?php echo esc_attr( $nonce ); ?>">
 			<button type="button" class="mmrm-ai-banner-close" aria-label="Dismiss banner">&times;</button>
 			<div class="mmrm-ai-banner-inner">
-				<div class="mmrm-ai-banner-left">
-					<div class="mmrm-ai-banner-logo">
-						<img src="<?php echo esc_url( $logo_url ); ?>" alt="AI BotKit" />
+				<!-- Content -->
+				<div class="mmrm-ai-banner-content">
+					<div class="mmrm-ai-banner-eyebrow">
+						<span class="mmrm-ai-banner-eyebrow-dot"></span>
+						New — free with your plugin
 					</div>
-					<div class="mmrm-ai-banner-text">
-						<h2>🤖 Turn your <strong>Inquiries</strong> into Sales with <strong>AI</strong></h2>
-						<p style="margin-bottom: 15px;">Boost engagement with <strong>AI BotKit</strong> — a free ChatGPT-powered assistant that answers product questions, captures leads, and supports customers <strong>24/7</strong>. Quick setup, fully customizable, built for WordPress.</p>
-						<p>
-							<a class="button button-primary mmrm-ai-banner-cta" href="<?php echo esc_url( $cta_url ); ?>" target="_blank" rel="noopener noreferrer">✨ Get Free AI Chatbot</a>
-						</p>
-						<p class="mmrm-ai-banner-trust"><small>Built by <a href="https://wisdmlabs.com" target="_blank" rel="noopener noreferrer">WisdmLabs</a> · Trusted by 10,000+ users</small></p>
+					<h2 class="mmrm-ai-banner-headline">Your Product Enquiry plugin<br>just got <em>a lot smarter.</em></h2>
+					<p class="mmrm-ai-banner-body-text">
+						Meet <strong>AI BotKit</strong> — now included free. It answers product questions instantly, captures leads before they leave, and hands off to your enquiry inbox when a human touch is needed.
+					</p>
+					<div class="mmrm-ai-banner-cta-row">
+						<?php if ( ! $plugin_installed ) : ?>
+							<button type="button" class="mmrm-ai-banner-btn-primary pefree-banner-install-ai" data-action="install">
+								<span class="mmrm-ai-banner-btn-icon">✦</span>
+								<?php esc_html_e( 'Setup AI Product Enquiry Assistant', 'product-enquiry-for-woocommerce' ); ?>
+							</button>
+						<?php elseif ( ! $plugin_active ) : ?>
+							<button type="button" class="mmrm-ai-banner-btn-primary pefree-banner-install-ai" data-action="activate">
+								<span class="mmrm-ai-banner-btn-icon">✦</span>
+								<?php esc_html_e( 'Activate', 'product-enquiry-for-woocommerce' ); ?>
+							</button>
+						<?php else : ?>
+							<span class="mmrm-ai-banner-btn-primary" style="opacity: 0.7; cursor: default;">
+								<span class="mmrm-ai-banner-btn-icon">✓</span>
+								<?php esc_html_e( 'Installed', 'product-enquiry-for-woocommerce' ); ?>
+							</span>
+						<?php endif; ?>
+						<span class="mmrm-ai-banner-trust-line">No extra cost · <strong>5-minute setup</strong> · Works out of the box</span>
 					</div>
 				</div>
-				<div class="mmrm-ai-banner-right">
-					<img src="<?php echo esc_url( $right_url ); ?>" alt="AI BotKit Preview" />
+
+				<!-- Chat mockup -->
+				<div class="mmrm-ai-banner-chat-mock">
+					<div class="mmrm-ai-banner-new-badge">New</div>
+					<div class="mmrm-ai-banner-chat-widget">
+						<div class="mmrm-ai-banner-chat-header">
+							<div class="mmrm-ai-banner-chat-header-left">
+								<div class="mmrm-ai-banner-chat-avatar">AI</div>
+								<div>
+									<div class="mmrm-ai-banner-chat-title">Product Assistant</div>
+									<div class="mmrm-ai-banner-chat-status">● Online now</div>
+								</div>
+							</div>
+							<div class="mmrm-ai-banner-chat-controls">
+								<span>⊕</span>
+								<span>×</span>
+							</div>
+						</div>
+						<div class="mmrm-ai-banner-chat-body">
+							<div class="mmrm-ai-banner-msg mmrm-ai-banner-msg-user">Does this come in bulk pricing?</div>
+							<div class="mmrm-ai-banner-msg mmrm-ai-banner-msg-bot">Yes! Orders over 50 units get 15% off. Want me to send you a quote?</div>
+							<div class="mmrm-ai-banner-typing"><span></span><span></span><span></span></div>
+						</div>
+						<div class="mmrm-ai-banner-chat-input-row">
+							<div class="mmrm-ai-banner-chat-input">Type a message…</div>
+							<div class="mmrm-ai-banner-send-btn">➤</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
+
+		<script type="text/javascript">
+		jQuery(document).ready(function($) {
+			$('.pefree-banner-install-ai').on('click', function(e) {
+				e.preventDefault();
+				var $button = $(this);
+				var action = $button.data('action');
+
+				if ($button.hasClass('processing')) {
+					return;
+				}
+
+				$button.addClass('processing').text(action === 'install' ? 'Installing...' : 'Activating...');
+
+				$.ajax({
+					url: ajaxurl,
+					type: 'POST',
+					data: {
+						action: 'pefree_install_ai_plugin',
+						plugin: 'ai-botkit-for-lead-generation',
+						plugin_action: action,
+						nonce: '<?php echo esc_js( $install_nonce ); ?>'
+					},
+					success: function(response) {
+						if (response.success) {
+							if (action === 'install') {
+								alert('<?php echo esc_js( __( 'Plugin installed successfully!', 'product-enquiry-for-woocommerce' ) ); ?>');
+								location.reload();
+							} else {
+								alert('<?php echo esc_js( __( 'Plugin activated successfully!', 'product-enquiry-for-woocommerce' ) ); ?>');
+								location.reload();
+							}
+						} else {
+							alert(response.data.message || '<?php echo esc_js( __( 'Installation failed. Please try again.', 'product-enquiry-for-woocommerce' ) ); ?>');
+							$button.removeClass('processing').html('<span class="mmrm-ai-banner-btn-icon">✦</span><?php echo esc_js( __( 'Setup AI Product Enquiry Assistant', 'product-enquiry-for-woocommerce' ) ); ?>');
+						}
+					},
+					error: function() {
+						alert('<?php echo esc_js( __( 'An error occurred. Please try again.', 'product-enquiry-for-woocommerce' ) ); ?>');
+						$button.removeClass('processing').html('<span class="mmrm-ai-banner-btn-icon">✦</span><?php echo esc_js( __( 'Setup AI Product Enquiry Assistant', 'product-enquiry-for-woocommerce' ) ); ?>');
+					}
+				});
+			});
+		});
+		</script>
 		<?php
 	}
 
@@ -167,9 +259,9 @@ class PE_Admin_AI_BotKit_Banner {
 			wp_send_json_error( array( 'message' => __( 'Insufficient permissions.', 'product-enquiry-for-woocommerce' ) ) );
 		}
 
-		// Save dismissal for current user.
+		// Save dismissal timestamp for current user.
 		$user_id = get_current_user_id();
-		update_user_meta( $user_id, 'pefree_ai_botkit_banner_dismissed', true );
+		update_user_meta( $user_id, 'pefree_ai_botkit_banner_dismissed', current_time( 'timestamp' ) );
 
 		wp_send_json_success( array( 'message' => __( 'Banner dismissed.', 'product-enquiry-for-woocommerce' ) ) );
 	}
